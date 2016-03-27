@@ -105,3 +105,7 @@ if !exists(":DiffOrig")
 endif
 
 set number
+
+call plug#begin('~/.vim/plugged')
+Plug 'matchit.zip'
+call plug#end()
