@@ -96,6 +96,8 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=0
 
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
