@@ -108,4 +108,5 @@ set number
 
 call plug#begin('~/.vim/plugged')
 Plug 'matchit.zip'
+Plug 'netrw.vim'
 call plug#end()
