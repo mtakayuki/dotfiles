@@ -97,6 +97,7 @@ set shiftwidth=2
 set softtabstop=0
 
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+nnoremap <f5> :!ctags -R<CR>
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
