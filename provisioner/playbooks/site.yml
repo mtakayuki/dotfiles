@@ -1,0 +1,9 @@
+- hosts: localhost
+  become: no
+  vars:
+    homebrew:
+      packages:
+        - tmux
+
+  roles:
+    - homebrew
