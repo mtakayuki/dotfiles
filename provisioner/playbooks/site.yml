@@ -4,6 +4,8 @@
     homebrew:
       packages:
         - tmux
+        - peco
+        - ghq
 
   roles:
     - homebrew
