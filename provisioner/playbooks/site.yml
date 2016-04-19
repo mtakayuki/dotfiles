@@ -6,6 +6,10 @@
         - tmux
         - peco
         - ghq
+    homebrew_cask:
+      packages:
+        - virtualbox
+        - dockertoolbox
 
   roles:
     - homebrew
