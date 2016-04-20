@@ -1,0 +1,12 @@
+export PATH="$HOME/bin:$HOME/.dotfiles/bin"
+export JAVA_HOME=`/usr/libexec/java_home`
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages
+export HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=/usr/local/Caskroom"
+export HISTCONTROL=ignoredups
+
+if [ -f ~/.bashrc ]; then
+  source ~/.bashrc
+fi
+
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
