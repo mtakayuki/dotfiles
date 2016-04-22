@@ -9,6 +9,7 @@ nnoremap <f5> :!ctags -R<CR>
 set number
 set hidden
 set nobackup
+set backspace=indent,eol,start
 
 " indent
 set expandtab
