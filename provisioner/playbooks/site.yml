@@ -13,3 +13,4 @@
 
   roles:
     - homebrew
+    - terminal
