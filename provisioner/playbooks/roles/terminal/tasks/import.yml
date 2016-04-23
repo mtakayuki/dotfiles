@@ -1,0 +1,31 @@
+---
+- name: "Create a file for terminal settings"
+  shell: mktemp
+  register: terminal
+
+- name: "Create a file for window settings"
+  shell: mktemp
+  register: window
+
+- name: "Export current settings"
+  shell: defaults export com.apple.Terminal "{{ terminal.stdout }}"
+
+- name: "Extract window settings"
+  shell: plutil -extract "Window Settings" xml1 -o "{{ window.stdout }}" "{{ terminal.stdout }}"
+
+- name: "Add new thema to window settings"
+  shell: plutil -insert "{{ thema }}" -xml "$(xmllint --xpath /plist/dict '{{ role_path }}/files/{{ thema }}.terminal')" "{{ window.stdout }}"
+
+- name: "Replace window settings"
+  shell: plutil -replace "Window Settings" -xml "$(xmllint --xpath /plist/dict {{ window.stdout }})" "{{ terminal.stdout }}"
+
+- name: "Import new settings"
+  shell: defaults import com.apple.Terminal "{{ terminal.stdout }}"
+
+- name: "Delete temporary files"
+  file:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ terminal.stdout }}"
+    - "{{ window.stdout }}"
