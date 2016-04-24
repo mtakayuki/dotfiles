@@ -1,6 +1,10 @@
-alias ls='ls -FG'
-alias la='ls -a'
-alias ll='ls -la'
+function is_mac {
+  [ $(uname) = 'Darwin' ]
+}
+
+if [ -f ~/.bash_alias ]; then
+  source ~/.bash_alias
+fi
 
 source /usr/local/etc/bash_completion.d/git-completion.bash
 source /usr/local/etc/bash_completion.d/git-prompt.sh
@@ -17,6 +21,14 @@ function gcd {
   local repo="$(ghq list | peco)"
   if [ ! -z "$repo" ]; then
     cd "$(ghq root)/$repo"
+  fi
+}
+
+# peco
+function pvi {
+  local path="$(find * | peco)"
+  if [ ! -z "$path" ]; then
+    vi "$path"
   fi
 }
 
