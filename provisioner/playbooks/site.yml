@@ -6,6 +6,7 @@
         - tmux
         - peco
         - ghq
+        - reattach-to-user-namespace
     homebrew_cask:
       packages:
         - virtualbox
