@@ -10,6 +10,11 @@ set number
 set hidden
 set nobackup
 set backspace=indent,eol,start
+set ruler
+
+" search
+set hlsearch
+set incsearch
 
 " indent
 set expandtab
