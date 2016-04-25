@@ -26,6 +26,7 @@ set softtabstop=0
 call plug#begin('~/.vim/plugged')
 Plug 'matchit.zip'
 Plug 'netrw.vim'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
 Plug 'scrooloose/syntastic'
 call plug#end()
