@@ -1,0 +1,15 @@
+#!/bin/bash
+
+eval $(anyenv init -)
+
+args=$(cat << 'EOF'
+<<INCLUDE_ANSIBLE_MODULE_JSON_ARGS>>
+EOF
+)
+
+function arg {
+  echo $(echo $args | jq .$1)
+}
+
+echo $args | jq '.changed=false'
+exit 0

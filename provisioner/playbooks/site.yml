@@ -12,6 +12,22 @@
         - virtualbox
         - dockertoolbox
 
+    anyenv:
+      - env_name: rbenv
+        versions:
+          - 2.1.2
+          - 2.3.0
+        global: 2.3.0
+      - env_name: goenv
+        versions:
+          - 1.6
+        global: 1.6
+      - env_name: ndenv
+        versions:
+          - v5.11.0
+        global: v5.11.0
+
   roles:
     - homebrew
     - terminal
+    - anyenv
