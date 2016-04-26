@@ -1,0 +1,19 @@
+---
+- name: "Install xenv"
+  shell: bash -lc "anyenv install {{ item.env_name }}"
+  args:
+    creates: "{{ anyenv_dir }}/envs/{{ item.env_name }}"
+  with_items: "{{ anyenv }}"
+
+- name: "Install packages"
+  shell: bash -lc "{{ item.0.env_name }} install {{ item.1 }}"
+  args:
+    creates: "{{ anyenv_dir }}/envs/{{ item.0.env_name }}/versions/{{ item.1 }}"
+  with_subelements:
+    - "{{ anyenv }}"
+    - versions
+
+- name: "Set global version"
+  shell: bash -lc "{{ item.env_name }} global {{ item.global }}"
+  when: item.global is defined
+  with_items: "{{ anyenv }}"
