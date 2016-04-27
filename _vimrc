@@ -29,7 +29,13 @@ Plug 'netrw.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
 Plug 'scrooloose/syntastic'
+Plug 'altercation/vim-colors-solarized'
 call plug#end()
+
+" color schema"
+syntax enable
+set background=dark
+colorscheme solarized
 
 " Recommended settings for syntastic
 set statusline+=%#warningmsg#
