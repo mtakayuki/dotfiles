@@ -10,6 +10,7 @@
     homebrew_cask:
       packages:
         - virtualbox
+        - virtualbox-extension-pack
         - dockertoolbox
 
     anyenv:
