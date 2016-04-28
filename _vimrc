@@ -5,6 +5,9 @@ filetype plugin on
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 nnoremap <f5> :!ctags -R<CR>
 
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+
 " global configuration
 set number
 set hidden
@@ -15,6 +18,7 @@ set ruler
 " search
 set hlsearch
 set incsearch
+set wildmode=longest,list
 
 " indent
 set expandtab
