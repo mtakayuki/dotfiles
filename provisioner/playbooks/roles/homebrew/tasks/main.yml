@@ -3,6 +3,12 @@
   homebrew:
     update_homebrew: yes
 
+- name: "add tap repositories"
+  homebrew_tap:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ homebrew.repositories }}"
+
 - name: "install homebrew packages"
   homebrew:
     name: "{{ item }}"
@@ -13,4 +19,4 @@
   homebrew_cask:
     name: "{{ item }}"
     state: present
-  with_items: "{{ homebrew_cask.packages }}"
+  with_items: "{{ homebrew.cask_packages }}"

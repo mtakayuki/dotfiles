@@ -2,16 +2,18 @@
   become: no
   vars:
     homebrew:
+      repositories:
+        - caskroom/fonts
       packages:
         - tmux
         - peco
         - ghq
         - reattach-to-user-namespace
-    homebrew_cask:
-      packages:
+      cask_packages:
         - virtualbox
         - virtualbox-extension-pack
         - dockertoolbox
+        - font-nyashi
 
     anyenv:
       - env_name: rbenv
