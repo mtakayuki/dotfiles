@@ -14,6 +14,7 @@
         - virtualbox-extension-pack
         - dockertoolbox
         - font-nyashi
+        - google-chrome
 
     anyenv:
       - env_name: rbenv
