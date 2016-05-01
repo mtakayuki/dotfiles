@@ -5,3 +5,8 @@ set editing-mode vi
 "\C-a": beginning-of-line
 "\C-e": end-of-line
 "\C-k": kill-line
+"\C-f": forward-char
+"\C-b": backward-char
+"\M-f": forward-word
+"\M-b": backward-word"
+"\C-d": delete-char
