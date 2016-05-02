@@ -7,6 +7,7 @@ nnoremap <f5> :!ctags -R<CR>
 
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " global configuration
 set number
