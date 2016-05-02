@@ -30,6 +30,10 @@
         versions:
           - v5.11.0
         global: v5.11.0
+      - env_name: pyenv
+        versions:
+          - 2.7.11
+        global: 2.7.11
 
   roles:
     - homebrew
