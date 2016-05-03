@@ -18,19 +18,24 @@
 
     anyenv:
       - env_name: rbenv
+        environment: {}
         versions:
           - 2.1.2
           - 2.3.0
         global: 2.3.0
       - env_name: goenv
+        environment: {}
         versions:
           - 1.6
         global: 1.6
       - env_name: ndenv
+        environment: {}
         versions:
           - v5.11.0
         global: v5.11.0
       - env_name: pyenv
+        environment:
+          PYTHON_CONFIGURE_OPTS: "--enable-unicode=ucs2"
         versions:
           - 2.7.11
         global: 2.7.11
