@@ -6,4 +6,4 @@
     repo: https://github.com/riywo/anyenv.git
     update: yes
 
-- include: anyenv.yml name=rbenv
+- include: anyenv.yml
