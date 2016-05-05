@@ -10,6 +10,7 @@ cnoremap <C-n> <Down>
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " global configuration
+set history=200
 set number
 set hidden
 set nobackup
