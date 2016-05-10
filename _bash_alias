@@ -1,7 +1,15 @@
 alias ls='ls -FG'
 alias la='ls -a'
 alias ll='ls -la'
+
+# Interactive operation...
 alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# Default to human readable figures
+alias df='df -h'
+alias du='du -h'
 
 if is_mac; then
   alias tac="tail -r"
