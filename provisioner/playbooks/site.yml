@@ -15,6 +15,7 @@
         - dockertoolbox
         - font-nyashi
         - google-chrome
+        - karabiner
 
     anyenv:
       - env_name: rbenv
