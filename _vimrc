@@ -28,6 +28,13 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=0
 
+"
+augroup MyXML
+  autocmd!
+  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
+  autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
+augroup END
+
 " plugin manager
 call plug#begin('~/.vim/plugged')
 Plug 'matchit.zip'
