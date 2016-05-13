@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<root>
+ <item>
+    <name>Leave Insert Mode with EISUU</name>
+    <identifier>private.app_terminal_esc_with_eisuu</identifier>
+    <only>TERMINAL</only>
+    <autogen>
+      __KeyToKey__
+      KeyCode::ESCAPE,
+      KeyCode::ESCAPE, KeyCode::JIS_EISUU
+    </autogen>
+    <autogen>
+      __KeyToKey__
+      KeyCode::JIS_BRACKET_LEFT, ModifierFlag::CONTROL_L,
+      KeyCode::ESCAPE, KeyCode::JIS_EISUU
+    </autogen>
+ </item>
+</root>
