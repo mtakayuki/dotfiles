@@ -1,0 +1,5 @@
+---
+- name: "Copy private.xml of Karabiner"
+  copy:
+    src: "{{ role_path }}/files/private.xml"
+    dest: "{{ lookup('env', 'HOME') }}/Library/Application Support/Karabiner/private.xml"
