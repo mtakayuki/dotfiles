@@ -2,7 +2,7 @@
 
 Currently,only MAC OS X is supported.
 
-To create a symbolic link and provision the machiene, execute the following command:
+To create a symbolic link and provision the machine, execute the following command:
 
 ```shell
 $ make
