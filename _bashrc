@@ -8,8 +8,14 @@ if [ -f ~/.bash_alias ]; then
   source ~/.bash_alias
 fi
 
-source /usr/local/etc/bash_completion.d/git-completion.bash
-source /usr/local/etc/bash_completion.d/git-prompt.sh
+if is_mac; then
+  bash_completion_dir=/usr/local/etc/bash_completion.d
+else
+  bash_completion_dir=/etc/bash_completion.d
+fi
+
+source ${bash_completion_dir}/git-completion.bash
+source ${bash_completion_dir}/git-prompt.sh
 
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWUPSTREAM=1
