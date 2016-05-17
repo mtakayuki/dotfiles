@@ -1,4 +1,8 @@
-alias ls='ls -FG'
+if is_mac; then
+  alias ls='ls -FG'
+else
+  alias ls='ls -F --color'
+fi
 alias la='ls -a'
 alias ll='ls -la'
 
