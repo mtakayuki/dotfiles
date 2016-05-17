@@ -45,7 +45,7 @@ function pvi {
 }
 
 # tmux
-if [ -z "$TMUX" -a -z "$SSH_CONECTION" ]; then
+if is_mac && [ -z "$TMUX" -a -z "$SSH_CONECTION" ]; then
   if tmux has-session > /dev/null 2>&1 && tmux list-sessions | grep -qE '.*]$'; then
     tmux attach
   else
