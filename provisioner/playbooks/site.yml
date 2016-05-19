@@ -42,7 +42,7 @@
         global: 2.7.11
 
   roles:
-    - homebrew
-    - terminal
+    - { role: homebrew, tags: [ 'mac' ] }
+    - { role: terminal, tags: [ 'mac' ] }
     - anyenv
-    - keymappings
+    - { role: keymappings, tags: [ 'mac'] }
