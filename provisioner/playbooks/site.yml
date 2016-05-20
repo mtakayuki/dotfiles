@@ -41,6 +41,11 @@
         versions:
           - 2.7.11
         global: 2.7.11
+      - env_name: scalaenv
+        environment: {}
+        versions:
+          - scala-2.11.8
+        global: scala-2.11.8
 
   roles:
     - { role: homebrew, tags: [ 'mac' ] }
