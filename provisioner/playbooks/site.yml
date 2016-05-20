@@ -9,6 +9,7 @@
         - peco
         - ghq
         - reattach-to-user-namespace
+        - plantuml
       cask_packages:
         - virtualbox
         - virtualbox-extension-pack
