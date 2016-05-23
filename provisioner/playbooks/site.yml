@@ -10,6 +10,7 @@
         - ghq
         - reattach-to-user-namespace
         - plantuml
+        - sbt
       cask_packages:
         - virtualbox
         - virtualbox-extension-pack
