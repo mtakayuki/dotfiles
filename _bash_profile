@@ -3,7 +3,6 @@ if [ -f "/usr/libexec/java_home" ]; then
   export JAVA_HOME=`/usr/libexec/java_home`
 fi
 export GOPATH=$HOME/go
-export PYTHONPATH=/usr/local/lib/python2.7/site-packages
 export HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=/usr/local/Caskroom"
 export HISTCONTROL=ignoredups
 

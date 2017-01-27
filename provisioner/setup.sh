@@ -9,4 +9,4 @@ done
 
 cd "$(dirname $0)"/playbooks
 
-ansible-playbook -i hosts site.yml
+/usr/local/bin/ansible-playbook -i hosts site.yml
