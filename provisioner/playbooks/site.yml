@@ -41,7 +41,8 @@
           PYTHON_CONFIGURE_OPTS: "--enable-unicode=ucs2"
         versions:
           - 2.7.11
-        global: 2.7.11
+          - 3.5.1
+        global: 3.5.1
       - env_name: scalaenv
         environment: {}
         versions:
