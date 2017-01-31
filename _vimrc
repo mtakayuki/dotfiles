@@ -45,6 +45,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'scrooloose/syntastic'
 Plug 'altercation/vim-colors-solarized'
 Plug 'puppetlabs/puppet-syntax-vim'
+Plug 'scrooloose/nerdtree'
 call plug#end()
 
 " color schema"
