@@ -17,7 +17,7 @@
         - docker-toolbox
         - font-nyashi
         - google-chrome
-        - karabiner
+        # - karabiner
 
     anyenv:
       - env_name: rbenv
@@ -53,4 +53,4 @@
     - { role: homebrew, tags: [ 'mac' ] }
     - { role: terminal, tags: [ 'mac' ] }
     - anyenv
-    - { role: keymappings, tags: [ 'mac'] }
+    # - { role: keymappings, tags: [ 'mac'] }
