@@ -4,10 +4,12 @@
     homebrew:
       repositories:
         - caskroom/fonts
+        - neovim/neovim
       packages:
         - tmux
         - peco
         - ghq
+        - neovim
         - reattach-to-user-namespace
         - plantuml
         - sbt

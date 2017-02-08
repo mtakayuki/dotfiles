@@ -18,3 +18,5 @@ alias du='du -h'
 if is_mac; then
   alias tac="tail -r"
 fi
+
+alias vi='nvim'
