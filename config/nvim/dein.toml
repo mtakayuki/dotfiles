@@ -2,6 +2,18 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
+repo = 'Shougo/denite.nvim'
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = '''
+let g:deoplete#enable_at_startup = 1
+'''
+
+[[plugins]]
+repo = 'zchee/deoplete-jedi'
+
+[[plugins]]
 repo = 'vim-scripts/matchit.zip'
 
 [[plugins]]
