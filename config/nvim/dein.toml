@@ -15,7 +15,7 @@ repo = 'puppetlabs/puppet-syntax-vim'
 
 [[plugins]]
 repo = 'scrooloose/syntastic'
-hook_source = 'source ~/.dotfiles/config/nvim/plugins/plugins/syntastic.vim'
+hook_add = 'source ~/.dotfiles/config/nvim/plugins/syntastic.vim'
 
 [[plugins]]
 repo = 'scrooloose/nerdtree'
