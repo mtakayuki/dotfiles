@@ -39,12 +39,10 @@
           - v5.11.0
         global: v5.11.0
       - env_name: pyenv
-        environment:
-          PYTHON_CONFIGURE_OPTS: "--enable-unicode=ucs2"
+        environment: {}
         versions:
-          - 2.7.11
-          - 3.5.1
-        global: 3.5.1
+          - miniconda3-3.19.0
+        global: miniconda3-3.19.0
       - env_name: scalaenv
         environment: {}
         versions:
