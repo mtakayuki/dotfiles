@@ -7,7 +7,7 @@ MKDIR := mkdir -p
 
 all: setup
 
-setup: $(CACHE_DIR)
+setup: $(XDG_DIRS)
 	@echo 'Create dotfiles'
 	@$(foreach file, $(DOTFILES), ln -sfnv $(abspath $(file)) $(HOME)/$(file:_%=.%);)
 	@$(foreach dir, $(CONFIGFILES), ln -sfnv $(abspath $(dir)) $(HOME)/.$(dir);)
