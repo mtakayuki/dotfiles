@@ -13,6 +13,7 @@
         - reattach-to-user-namespace
         - plantuml
         - sbt
+        - yarn
       cask_packages:
         - virtualbox
         - virtualbox-extension-pack
