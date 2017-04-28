@@ -32,3 +32,6 @@ endfunction"}}}
 call s:source_rc('dein.vim')
 call s:source_rc('mappings.vim')
 call s:source_rc('options.vim')
+call s:source_rc('filetype.vim')
+
+autocmd QuickFixCmdPost "grep" cwindow
