@@ -14,6 +14,8 @@
         - plantuml
         - sbt
         - yarn
+        - python
+        - python3
       cask_packages:
         - virtualbox
         - virtualbox-extension-pack
@@ -43,7 +45,7 @@
         environment: {}
         versions:
           - miniconda3-3.19.0
-        global: miniconda3-3.19.0
+        global: system
       - env_name: scalaenv
         environment: {}
         versions:
