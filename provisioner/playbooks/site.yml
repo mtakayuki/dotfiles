@@ -13,6 +13,7 @@
         - reattach-to-user-namespace
         - plantuml
         - sbt
+        - node
         - yarn
         - python
         - python3
@@ -40,7 +41,7 @@
         environment: {}
         versions:
           - v5.11.0
-        global: v5.11.0
+        global: system
       - env_name: pyenv
         environment: {}
         versions:
