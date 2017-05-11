@@ -5,6 +5,7 @@
       repositories:
         - caskroom/fonts
         - neovim/neovim
+        - universal-ctags/universal-ctags
       packages:
         - tmux
         - peco
@@ -17,6 +18,9 @@
         - yarn
         - python
         - python3
+      packages_with_options:
+        - name: universal-ctags
+          install_options: HEAD
       cask_packages:
         - virtualbox
         - virtualbox-extension-pack

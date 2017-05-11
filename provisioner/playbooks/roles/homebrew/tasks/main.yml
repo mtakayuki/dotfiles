@@ -15,6 +15,13 @@
     state: present
   with_items: "{{ homebrew.packages }}"
 
+- name: "install homebrew packages with options"
+  homebrew:
+    name: "{{ item.name }}"
+    install_options: "{{ item.install_options }}"
+    state: present
+  with_items: "{{ homebrew.packages_with_options }}"
+
 - name: "install homebrew cask packages"
   homebrew_cask:
     name: "{{ item }}"
