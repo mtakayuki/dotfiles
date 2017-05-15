@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -eu
+
+if [ $# -eq 0 ]; then
+  ls -l $HOME/.netrc
+  exit 0
+fi
+
+filename=.netrc.$1
+if [ -f $HOME/$filename ]; then
+  ln -sf $HOME/$filename $HOME/.netrc
+else
+  echo $filename not found
+  ls $HOME/.netrc.*
+  exit 1
+fi
