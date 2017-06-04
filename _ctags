@@ -1,5 +1,8 @@
 --recurse=yes
 --exclude=coverage
+--exclude=node_modules
+--exclude=build
+--exclude=dist
 
 --langmap=javascript:+.jsx
 
