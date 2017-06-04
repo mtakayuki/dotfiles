@@ -43,3 +43,9 @@ repo = 'tpope/vim-surround'
 
 [[plugins]]
 repo = 'tpope/vim-unimpaired'
+
+[[plugins]]
+repo = 'pangloss/vim-javascript'
+
+[[plugins]]
+repo = 'maxmellon/vim-jsx-pretty'

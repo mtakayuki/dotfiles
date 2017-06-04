@@ -5,7 +5,7 @@ endif
 let g:python_host_prog='/usr/local/bin/python'
 let g:python3_host_prog='/usr/local/bin/python3'
 
-filetype plugin on
+filetype plugin indent on
 
 let s:script_dir = expand('<sfile>:p:h')
 
