@@ -3,7 +3,7 @@ if [ -f "/usr/libexec/java_home" ]; then
   export JAVA_HOME=`/usr/libexec/java_home`
 fi
 export GOPATH=$HOME/go
-export HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=/usr/local/Caskroom"
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export HISTCONTROL=ignoredups
 
 if [ -f ~/.bashrc ]; then
@@ -11,7 +11,7 @@ if [ -f ~/.bashrc ]; then
 fi
 
 # anyenv
-export PATH="$HOME/.anyenv/bin:$GOPATH/bin:$PATH"
+export PATH="/usr/local/miniconda3/bin:$HOME/.anyenv/bin:$GOPATH/bin:$PATH"
 if [ -d $HOME/.anyenv/bin ]; then
   eval "$(anyenv init -)"
 fi
