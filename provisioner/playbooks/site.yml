@@ -46,11 +46,6 @@
         versions:
           - v5.11.0
         global: system
-      - env_name: pyenv
-        environment: {}
-        versions:
-          - miniconda3-3.19.0
-        global: system
       - env_name: scalaenv
         environment: {}
         versions:
