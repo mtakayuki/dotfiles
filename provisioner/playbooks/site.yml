@@ -27,6 +27,7 @@
         - font-nyashi
         - google-chrome
         # - karabiner
+        - miniconda
 
     anyenv:
       - env_name: rbenv
