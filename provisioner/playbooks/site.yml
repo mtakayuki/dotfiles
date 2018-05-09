@@ -17,6 +17,7 @@
         - yarn
         - python
         - python3
+        - r
       packages_with_options:
         - name: universal-ctags
           install_options: HEAD
@@ -28,6 +29,7 @@
         - google-chrome
         # - karabiner
         - miniconda
+        - rstudio
 
     anyenv:
       - env_name: rbenv
