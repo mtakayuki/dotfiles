@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -eux
+
+# xcode-select --install
+# /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+git clone https://github.com/mtakayuki/dotfiles.git ~/.dotfiles
+cd ~/.dotfile
+git submodule update -i

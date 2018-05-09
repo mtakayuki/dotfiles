@@ -7,13 +7,12 @@
         - neovim/neovim
         - universal-ctags/universal-ctags
       packages:
+        - git
         - tmux
         - peco
         - ghq
         - neovim
         - reattach-to-user-namespace
-        - plantuml
-        - sbt
         - node
         - yarn
         - python
@@ -22,9 +21,9 @@
         - name: universal-ctags
           install_options: HEAD
       cask_packages:
-        - virtualbox
-        - virtualbox-extension-pack
-        - docker-toolbox
+        # - virtualbox
+        # - virtualbox-extension-pack
+        # - docker-toolbox
         - font-nyashi
         - google-chrome
         # - karabiner
@@ -39,8 +38,8 @@
       - env_name: goenv
         environment: {}
         versions:
-          - 1.6
-        global: 1.6
+          - 1.9.6
+        global: 1.9.6
       - env_name: ndenv
         environment: {}
         versions:
@@ -53,7 +52,9 @@
         global: scala-2.11.8
 
   roles:
+    - { role: base }
     - { role: homebrew, tags: [ 'mac' ] }
     - { role: terminal, tags: [ 'mac' ] }
     - anyenv
     # - { role: keymappings, tags: [ 'mac'] }
+    - { role: neovim }

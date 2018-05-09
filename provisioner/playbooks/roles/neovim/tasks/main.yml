@@ -1,0 +1,5 @@
+---
+- name: "install neovim package for python3"
+  pip:
+    name: neovim
+    executable: pip3

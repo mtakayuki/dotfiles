@@ -1,0 +1,6 @@
+---
+- name: "create git config"
+  template:
+    src: templates/_gitconfig
+    dest: ~/.gitconfig
+    force: no
