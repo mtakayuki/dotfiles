@@ -3,3 +3,8 @@
   pip:
     name: neovim
     executable: pip3
+
+- name: "install neovim package for python2"
+  pip:
+    name: neovim
+    executable: pip2
