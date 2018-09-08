@@ -1,0 +1,16 @@
+name: jupyter
+dependencies:
+  - python=3.6
+  - ffmpeg
+  - imageio
+  - jupyter
+  - matplotlib
+  - notebook
+  - pandas
+  - Pillow
+  - scikit-learn
+  - pip:
+    - autograd
+    - cython
+    - tensorflow
+    - xgboost

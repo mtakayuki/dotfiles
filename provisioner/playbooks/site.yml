@@ -32,6 +32,7 @@
         - miniconda
         - slack
         - rstudio
+        - visual-studio-code
 
     anyenv:
       - env_name: rbenv
