@@ -9,13 +9,15 @@ if [ -f ~/.bash_alias ]; then
 fi
 
 if is_mac; then
-  bash_completion_dir=/usr/local/etc/bash_completion.d
+  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+  fi
 else
   bash_completion_dir=/etc/bash_completion.d
-fi
+  source ${bash_completion_dir}/git-completion.bash
+  source ${bash_completion_dir}/git-prompt.sh
 
-source ${bash_completion_dir}/git-completion.bash
-source ${bash_completion_dir}/git-prompt.sh
+fi
 
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWUPSTREAM=1
