@@ -1,0 +1,33 @@
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+if = "has('nvim')"
+on_cmd = 'Denite'
+build = ':UpdateRemotePlugins'
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+if = "has('nvim')"
+on_event = 'InsertCharPre'
+build = ':UpdateRemotePlugins'
+depends = ['neosnippet.vim']
+hook_add = '''
+let g:deoplete#enable_at_startup = 1
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet.vim'
+depends = ['neosnippet-snippets']
+hook_source = 'source ~/.config/nvim/plugins/neosnippet.vim'
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
+repo = 'Shougo/neco-vim'
+on_ft = ['vim']
+depends = ['deoplete.nvim']
+
+[[plugins]]
+repo = 'ujihisa/neco-look'
+on_ft = ['gitcommit', 'markdown']
+depends = ['deoplete.nvim']

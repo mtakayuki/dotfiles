@@ -1,0 +1,20 @@
+[[plugins]]
+repo = 'w0rp/ale'
+on_ft = [
+    'python',
+    'vim',
+]
+hook_source = '''
+    source ~/.config/nvim/plugins/ale.vim
+'''
+
+[[plugins]]
+repo = 'majutsushi/tagbar'
+on_cmd = ['TagbarToggle']
+hook_add = '''
+    nnoremap <Leader>t :<C-u>TagbarToggle<CR>
+    let g:tagbar_sort = 0
+    let g:tagbar_case_insensitive = 1
+    let g:tagbar_compact = 1
+'''
+

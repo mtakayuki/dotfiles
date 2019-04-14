@@ -1,0 +1,36 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'vim-scripts/matchit.zip'
+
+[[plugins]]
+repo = 'vim-scripts/netrw.vim'
+
+[[plugins]]
+repo = 'tpope/vim-commentary'
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'tpope/vim-unimpaired'
+
+[[plugins]]
+repo = 'altercation/vim-colors-solarized'
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+nnoremap <silent> <Leader>n :<C-u>NERDTreeToggle<CR>
+nnoremap <silent> <Leader>f :<C-u>NERDTreeFind %<CR>
+'''
+
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+hook_add = '''
+    source ~/.config/nvim/plugins/airline.vim
+'''
+
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
