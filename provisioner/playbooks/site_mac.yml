@@ -33,34 +33,25 @@
         - slack
         - rstudio
         - visual-studio-code
-
-    anyenv:
-      - env_name: rbenv
-        environment: {}
-        versions:
-          - 2.1.2
-          - 2.3.0
-        global: 2.3.0
-      - env_name: goenv
-        environment: {}
-        versions:
-          - 1.9.6
-        global: 1.9.6
-      - env_name: ndenv
-        environment: {}
-        versions:
-          - v5.11.0
-        global: system
-      - env_name: scalaenv
-        environment: {}
-        versions:
-          - scala-2.11.8
-        global: scala-2.11.8
+    pip2:
+      packages:
+        - pynvim
+    pip3:
+      packages:
+        - pynvim
+        - python-language-server
+        - flake8
+        - flake8-import-order
+        - autopep8
+        - isort
+        - yapf
+        - vim-vint
+    anyenv: []
 
   roles:
-    - { role: base }
-    - { role: homebrew, tags: [ 'mac' ] }
-    - { role: terminal, tags: [ 'mac' ] }
+    - base
+    - homebrew
+    - terminal
     - anyenv
     # - { role: keymappings, tags: [ 'mac'] }
-    - { role: neovim }
+    - pip
