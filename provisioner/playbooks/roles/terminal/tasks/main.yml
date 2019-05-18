@@ -1,15 +1,15 @@
 ---
-- name: "Retrieve terminal settings"
-  shell: "defaults export com.apple.Terminal - | grep '<key>' | sed 's/^[ \t]*//' | sed 's/<[^>]*>//g'"
-  register: terminal_settings
-  changed_when: no
-  always_run: yes
+# - name: "Retrieve terminal settings"
+#   shell: "defaults export com.apple.Terminal - | grep '<key>' | sed 's/^[ \t]*//' | sed 's/<[^>]*>//g'"
+#   register: terminal_settings
+#   changed_when: no
+#   check_mode: no
 
-- include: import.yml thema="{{ item }}"
-  when: terminal_settings.stdout_lines.count(item) < 1 
-  with_items:
-    - Solarized Dark
-    - Solarized Light
+# - include: import.yml thema="{{ item }}"
+#  when: terminal_settings.stdout_lines.count(item) < 1 
+#  with_items:
+#    - Solarized Dark
+#    - Solarized Light
 
 - name: "Set default thema"
   shell: defaults write com.apple.Terminal "Default Window Settings" -string "Solarized Dark"

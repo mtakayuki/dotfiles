@@ -1,6 +1,9 @@
 " key mappings
+let mapleader = "\<Space>"
+
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
-nnoremap <f5> :!ctags -R<CR>
+nnoremap <silent> <f5> :source $MYVIMRC<CR>
+" nnoremap <f5> :!ctags -R<CR>
 
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>

@@ -2,38 +2,10 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
-repo = 'Shougo/denite.nvim'
-
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-hook_add = '''
-let g:deoplete#enable_at_startup = 1
-'''
-
-[[plugins]]
-repo = 'zchee/deoplete-jedi'
-
-[[plugins]]
-repo = 'carlitux/deoplete-ternjs'
-
-[[plugins]]
 repo = 'vim-scripts/matchit.zip'
 
 [[plugins]]
 repo = 'vim-scripts/netrw.vim'
-
-[[plugins]]
-repo = 'altercation/vim-colors-solarized'
-
-[[plugins]]
-repo = 'puppetlabs/puppet-syntax-vim'
-
-[[plugins]]
-repo = 'scrooloose/syntastic'
-hook_add = 'source ~/.dotfiles/config/nvim/plugins/syntastic.vim'
-
-[[plugins]]
-repo = 'scrooloose/nerdtree'
 
 [[plugins]]
 repo = 'tpope/vim-commentary'
@@ -45,7 +17,20 @@ repo = 'tpope/vim-surround'
 repo = 'tpope/vim-unimpaired'
 
 [[plugins]]
-repo = 'pangloss/vim-javascript'
+repo = 'altercation/vim-colors-solarized'
 
 [[plugins]]
-repo = 'maxmellon/vim-jsx-pretty'
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+nnoremap <silent> <Leader>n :<C-u>NERDTreeToggle<CR>
+nnoremap <silent> <Leader>f :<C-u>NERDTreeFind %<CR>
+'''
+
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+hook_add = '''
+    source ~/.config/nvim/plugins/airline.vim
+'''
+
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'

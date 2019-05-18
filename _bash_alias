@@ -1,9 +1,14 @@
+# vim: set filetype=sh:
+
 if is_mac; then
   alias ls='ls -FG'
-else
-  alias ls='ls -F --color'
+elif [ -x /usr/bin/dircolors ]; then
+  alias ls='ls -F --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
 fi
-alias la='ls -a'
+alias la='ls -A'
 alias ll='ls -la'
 
 # Interactive operation...

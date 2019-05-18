@@ -1,0 +1,10 @@
+---
+- name: "install packages for python3"
+  pip:
+    name: "{{ pip3.packages }}"
+    executable: pip3
+
+- name: "install packages for python2"
+  pip:
+    name: "{{ pip2.packages }}"
+    executable: pip2

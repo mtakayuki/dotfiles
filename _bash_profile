@@ -1,17 +1,1 @@
-export PATH="$HOME/bin:$HOME/.dotfiles/bin:node_modules/.bin:$PATH"
-if [ -f "/usr/libexec/java_home" ]; then
-  export JAVA_HOME=`/usr/libexec/java_home`
-fi
-export GOPATH=$HOME/go
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-export HISTCONTROL=ignoredups
-
-if [ -f ~/.bashrc ]; then
-  source ~/.bashrc
-fi
-
-# anyenv
-export PATH="/usr/local/miniconda3/bin:$HOME/.anyenv/bin:$GOPATH/bin:$PATH"
-if [ -d $HOME/.anyenv/bin ]; then
-  eval "$(anyenv init -)"
-fi
+. ~/.profile

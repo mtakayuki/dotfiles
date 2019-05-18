@@ -2,11 +2,19 @@
 
 set -eu
 
-for s in "$(dirname $0)"/scripts/*.sh
+script_dir="$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)"
+. ${script_dir}/../os.sh
+
+for s in "${script_dir}"/scripts/*.sh
 do
-  bash "$s"
+#  bash "$s"
+  echo $s
 done 
 
-cd "$(dirname $0)"/playbooks
+cd "${script_dir}"/playbooks
 
-/usr/local/bin/ansible-playbook -i hosts site.yml
+if is_mac; then
+  /usr/local/bin/ansible-playbook -i hosts site_mac.yml
+elif is_linux; then
+  /usr/bin/ansible-playbook -i hosts site_linux.yml
+fi

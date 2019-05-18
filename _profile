@@ -1,0 +1,45 @@
+# vim: set filetype=sh:
+
+. $HOME/.dotfiles/os.sh
+
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+  # include .bashrc if it exists
+  if [ -f "$HOME/.bashrc" ]; then
+    . "$HOME/.bashrc"
+  fi
+fi
+
+if [ -d "$HOME/bin" ]; then
+  PATH="$HOME/bin:$PATH"
+fi
+
+if [ -d "$HOME/.dotfiles/bin" ]; then
+  PATH="$HOME/.dotfiles/bin:$PATH"
+fi
+
+if [ -f "/usr/local/miniconda3/bin" ]; then
+  PATH="/usr/local/miniconda3/bin:$PATH"
+fi
+
+# go
+if [ -d "$HOME/go" ]; then
+  export GOPATH=$HOME/go
+  PATH="$GOPATH/bin:$PATH"
+fi
+
+# anyenv
+if [ -d "$HOME/.anyenv/bin" ]; then
+  PATH="$HOME/.anyenv/bin:$PATH"
+  eval "$(anyenv init -)"
+fi
+
+# java
+if [ -f "/usr/libexec/java_home" ]; then
+  export JAVA_HOME=`/usr/libexec/java_home`
+fi
+
+# mac
+if is_mac; then
+  export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+fi

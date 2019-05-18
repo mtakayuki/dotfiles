@@ -17,8 +17,3 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 set softtabstop=0
-
-" color schema"
-syntax enable
-set background=dark
-colorscheme solarized
