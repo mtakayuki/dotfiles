@@ -1,0 +1,5 @@
+---
+- include: go_packages.yml
+  with_items: "{{ go.packages }}"
+  loop_control:
+    loop_var: pkg

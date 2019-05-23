@@ -27,8 +27,22 @@
         - yapf
         - vim-vint
     anyenv: []
+    go:
+      packages:
+        - org: peco
+          project: peco
+          version: v0.5.3
+          binary: peco
+          ftype: tar.gz
+        - org: motemen
+          project: ghq
+          version: v0.12.3
+          binary: ghq
+          ftype: zip
+
 
   roles:
     - { role: apt, become: yes }
     - anyenv
     - { role: pip, become: yes }
+    - { role: linux, become: yes }
