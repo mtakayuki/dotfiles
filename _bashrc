@@ -101,6 +101,12 @@ if [ -f ~/.bash_alias ]; then
   source ~/.bash_alias
 fi
 
+for bashrc in "$HOME/.bashrc_*"; do
+  if [ -f $bashrc ]; then
+    . $bashrc
+  fi
+done
+
 # ghq/go style development
 function gcd {
   local repo="$(ghq list | peco)"

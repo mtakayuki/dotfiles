@@ -18,13 +18,14 @@ if [ -d "$HOME/.dotfiles/bin" ]; then
   PATH="$HOME/.dotfiles/bin:$PATH"
 fi
 
-if [ -f "/usr/local/miniconda3/bin" ]; then
+if [ -d "/usr/local/miniconda3/bin" ]; then
   PATH="/usr/local/miniconda3/bin:$PATH"
 fi
 
 # go
 if [ -d "$HOME/go" ]; then
   export GOPATH=$HOME/go
+  export GO11MODULE=on
   PATH="$GOPATH/bin:$PATH"
 fi
 
@@ -35,7 +36,7 @@ if [ -d "$HOME/.anyenv/bin" ]; then
 fi
 
 # java
-if [ -f "/usr/libexec/java_home" ]; then
+if [ -d "/usr/libexec/java_home" ]; then
   export JAVA_HOME=`/usr/libexec/java_home`
 fi
 
@@ -43,3 +44,9 @@ fi
 if is_mac; then
   export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 fi
+
+for profile in "$HOME/.profile_*"; do
+  if [ -f $profile ]; then
+    . $profile
+  fi
+done
