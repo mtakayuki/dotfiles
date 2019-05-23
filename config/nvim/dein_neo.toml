@@ -2,13 +2,13 @@
 repo = 'Shougo/denite.nvim'
 if = "has('nvim')"
 on_cmd = 'Denite'
-build = ':UpdateRemotePlugins'
+# build = ':UpdateRemotePlugins'
 
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
 if = "has('nvim')"
 on_event = 'InsertCharPre'
-build = ':UpdateRemotePlugins'
+# build = ':UpdateRemotePlugins'
 depends = ['neosnippet.vim']
 hook_add = '''
 let g:deoplete#enable_at_startup = 1

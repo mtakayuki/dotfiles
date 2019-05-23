@@ -30,13 +30,14 @@ fi
 
 # go
 if [ -d "$HOME/go" ]; then
-  export GOPATH=$HOME/go
   export GO111MODULE=on
-  if [ -d "$HOME/go/bin" ]; then
-    PATH="$GOPATH/bin:$PATH"
-  fi
   if type goenv > /dev/null && goenv global > /dev/null; then
-    PATH="$GOPATH/$(goenv global)/bin":$PATH
+    export GOPATH=$HOME/go/$(goenv global)
+  else
+    export GOPATH=$HOME/go
+  fi
+  if [ -d "$GOPATH/bin" ]; then
+    PATH="$GOPATH/bin:$PATH"
   fi
 fi
 

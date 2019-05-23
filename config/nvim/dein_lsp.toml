@@ -3,7 +3,7 @@ repo = 'prabirshrestha/async.vim'
 
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp'
-on_ft = ['python']
+on_ft = ['python', 'go']
 depends = ['async.vim']
 hook_source = '''
 source ~/.config/nvim/plugins/lsp.vim
@@ -12,4 +12,4 @@ source ~/.config/nvim/plugins/lsp.vim
 [[plugins]]
 repo = 'lighttiger2505/deoplete-vim-lsp'
 depends = 'deoplete.nvim'
-on_ft = ['python']
+on_ft = ['python', 'go']

@@ -11,7 +11,6 @@ if (executable('pyls'))
 endif
 
 if (executable('gopls'))
-  let s:pyls_path = fnamemodify(g:python_host_prog, ':h') . '/'. 'pyls'
   augroup LspGo
     autocmd!
     autocmd User lsp_setup call lsp#register_server({
@@ -19,5 +18,6 @@ if (executable('gopls'))
           \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
           \ 'whitelist': ['go']
           \ })
+    autocmd BufWritePre *.go LspDocumentFormatSync
   augroup END
 endif
