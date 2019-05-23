@@ -72,9 +72,15 @@ xterm*|rxvt*)
 esac
 
 # enable programmable completion features
+has_git_prompt=no
 if is_mac; then
   if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
+  fi
+  git_prompt=$(brew --prefix)/etc/bash_completion.d/git-prompt.sh
+  if [ -f $git_prompt ]; then
+    . $git_prompt
+    has_git_prompt=yes
   fi
 elif ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -82,13 +88,15 @@ elif ! shopt -oq posix; then
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
   fi
+  bash_completion_dir=/etc/bash_completion.d
+  if [ -f ${bash_completion_dir}/git-prompt ];then
+    . ${bash_completion_dir}/git-prompt
+    has_git_prompt=yes
+  fi
 fi
 
 # git
-bash_completion_dir=/etc/bash_completion.d
-if [ -f ${bash_completion_dir}/git-prompt ];then
-  . ${bash_completion_dir}/git-prompt
-
+if [ $has_git_prompt = 'yes' ];then
   GIT_PS1_SHOWDIRTYSTATE=1
   GIT_PS1_SHOWUPSTREAM=1
   GIT_PS1_SHOWUNTRACKEDFILES=

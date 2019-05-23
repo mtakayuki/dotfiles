@@ -4,3 +4,10 @@
     src: templates/_gitconfig
     dest: ~/.gitconfig
     force: no
+
+- name: "add bash to /etc/shells"
+  template:
+    src: templates/shells
+    dest: /etc/shells
+    force: no
+    become: yes
