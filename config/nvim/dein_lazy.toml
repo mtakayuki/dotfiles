@@ -1,4 +1,12 @@
 [[plugins]]
+repo = 'scrooloose/nerdtree'
+on_cmd = ['NERDTreeToggle', 'NERDTreeFind']
+hook_add = '''
+    nnoremap <silent> <Leader>nn :<C-u>NERDTreeToggle<CR>
+    nnoremap <silent> <Leader>nf :<C-u>NERDTreeFind %<CR>
+'''
+
+[[plugins]]
 repo = 'w0rp/ale'
 on_ft = [
     'python',
@@ -18,3 +26,14 @@ hook_add = '''
     let g:tagbar_compact = 1
 '''
 
+[[plugins]]
+repo = 'autozimu/LanguageClient-neovim'
+rev = 'next'
+build = 'bash install.sh'
+on_ft = [
+    'python',
+    'go',
+]
+hook_source = '''
+    source ~/.config/nvim/plugins/LanguageClient-neovim.vim
+'''
