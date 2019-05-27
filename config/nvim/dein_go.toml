@@ -1,5 +1,6 @@
 [[plugins]]
 repo = 'fatih/vim-go'
+on_ft = ['go']
 hook_add = '''
   let g:go_fmt_command = "goimports"
   let g:go_def_mapping_enabled = 0
