@@ -21,7 +21,8 @@
     src: /tmp/{{ pkg.project }}_linux_amd64/{{ pkg.binary }}
     dest: /usr/local/bin/{{ pkg.binary }}
     remote_src: yes
-    mode: preserve
+    mode: 0755
+  when: not result.stat.exists
 
 - name: Delete downloaded files
   file:

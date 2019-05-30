@@ -5,6 +5,8 @@
       repositories:
         - ppa:neovim-ppa/stable
       packages:
+        - software-properties-common
+        - bash-completion
         - curl
         - git
         - less
@@ -13,6 +15,7 @@
         - python3-pip
         - tmux
         - neovim
+        - zip
     pip2:
       packages:
         - pynvim
@@ -39,8 +42,6 @@
           version: v0.12.3
           binary: ghq
           ftype: zip
-
-
   roles:
     - { role: apt, become: yes }
     - anyenv

@@ -1,7 +1,8 @@
 - name: "add repositories"
-  apt_repository:
-    repo: "{{ item }}"
-    state: present
+  #  apt_repository:
+  #  repo: "{{ item }}"
+  #  state: present
+  command: add-apt-repository {{ item }}
   with_items: "{{ apt.repositories }}"
 
 - name: "update cache"
