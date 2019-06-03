@@ -1,9 +1,8 @@
 " Required for operations modifying multiple buffers like rename.
 set hidden
 
-let s:pyls_path = fnamemodify(g:python_host_prog, ':h') . '/'. 'pyls'
 let g:LanguageClient_serverCommands = {
-      \ 'python': [expand(s:pyls_path)],
+      \ 'python': ['pyls'],
       \ 'go': ['gopls'],
       \ }
 

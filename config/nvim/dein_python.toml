@@ -1,3 +1,7 @@
 [[plugins]]
 repo = 'zchee/deoplete-jedi'
 on_ft = ['python']
+
+[[plugins]]
+repo = 'plytophogy/vim-virtualenv'
+on_ft = ['python']

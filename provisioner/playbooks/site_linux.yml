@@ -29,6 +29,7 @@
         - isort
         - yapf
         - vim-vint
+        - pipenv
     anyenv: []
     go:
       packages:
