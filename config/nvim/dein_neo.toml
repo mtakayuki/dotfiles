@@ -3,6 +3,10 @@ repo = 'Shougo/denite.nvim'
 if = "has('nvim')"
 on_cmd = 'Denite'
 # build = ':UpdateRemotePlugins'
+hook_add = '''
+nnoremap <Leader>f :Denite file_rec<CR>
+nnoremap <Leader>b :Denite buffer<CR>
+'''
 
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
@@ -12,12 +16,25 @@ on_event = 'InsertCharPre'
 depends = ['neosnippet.vim']
 hook_add = '''
 let g:deoplete#enable_at_startup = 1
+imap <expr><tab> neosnippet#expandable_or_jumpable() ?
+        \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
+imap <expr><CR> (pumvisible() && neosnippet#expandable()) ?
+        \    "\<Plug>(neosnippet_expand_or_jump)" :
+        \    pumvisible() ? deoplete#close_popup() : "\<CR>"
 '''
 
 [[plugins]]
 repo = 'Shougo/neosnippet.vim'
 depends = ['neosnippet-snippets']
-hook_source = 'source ~/.config/nvim/plugins/neosnippet.vim'
+hook_add = '''
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+'''
 
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
