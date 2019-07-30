@@ -1,3 +1,5 @@
+printf '\033[2 q'
+
 # vim: set filetype=sh:
 . $HOME/.dotfiles/os.sh
 
@@ -102,7 +104,7 @@ if [ $has_git_prompt = 'yes' ];then
   GIT_PS1_SHOWUNTRACKEDFILES=
   GIT_PS1_SHOWSTASHSTATE=1
 
-  PS1='\[\033[1;32m\]\u\[\033[00m\]:\[\033[1;34m\]\w\[\033[1;31m\]$(__git_ps1)\[\033[00m\] \$ '
+  PS1='\[\033[1;32m\]\u\[\033[00m\]:\[\033[1;34m\]\W\[\033[1;31m\]$(__git_ps1)\[\033[00m\] \$ '
 fi
 
 if [ -f ~/.bash_alias ]; then
@@ -128,7 +130,14 @@ function gcd {
 }
 
 # peco
-function pvi {
+function fcd {
+  local path="$(find * -not -path '*/\.*' -type d | peco)"
+  if [ ! -z "$path" ]; then
+    cd "$path"
+  fi
+}
+
+function fvi {
   local path="$(find * | peco)"
   if [ ! -z "$path" ]; then
     vi "$path"
