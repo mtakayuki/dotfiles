@@ -27,6 +27,7 @@ imap <expr><CR> (pumvisible() && neosnippet#expandable()) ?
 repo = 'Shougo/neosnippet.vim'
 depends = ['neosnippet-snippets']
 hook_add = '''
+let g:neosnippet#snippets_directory = "$HOME/.config/nvim/snippets/"
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
