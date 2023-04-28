@@ -57,22 +57,6 @@ if [ -n "$force_color_prompt" ]; then
   fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-  PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-  ;;
-*)
-  ;;
-esac
-
 # enable programmable completion features
 has_git_prompt=no
 if is_mac; then
@@ -104,8 +88,22 @@ if [ $has_git_prompt = 'yes' ];then
   GIT_PS1_SHOWUNTRACKEDFILES=
   GIT_PS1_SHOWSTASHSTATE=1
 
-  PS1='\[\033[1;32m\]\u\[\033[00m\]:\[\033[1;34m\]\W\[\033[1;31m\]$(__git_ps1)\[\033[00m\] \$ '
+  if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[00;32m\]\u\[\033[00m\]:\[\033[00;34m\]\W\[\033[01;31m\]$(__git_ps1)\[\033[00m\] \$ '
+  else
+    PS1='${debian_chroot:+($debian_chroot)}\u:\W$(__git_ps1) \$ '
+  fi
+else
+  if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[00;32m\]\u\[\033[00m\]:\[\033[00;34m\]\W\[\033[00m\] \$ '
+  else
+    PS1='${debian_chroot:+($debian_chroot)}\u:\W \$ '
+  fi
 fi
+
+eval $(dircolors | sed s/01/00/g)
+
+unset color_prompt force_color_prompt
 
 if [ -f ~/.bash_alias ]; then
   source ~/.bash_alias
@@ -116,6 +114,7 @@ for bashrc in "$HOME/.bashrc_*"; do
     . $bashrc
   fi
 done
+
 
 # ghq/go style development
 function gcd {
