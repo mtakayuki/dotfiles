@@ -49,8 +49,13 @@ mkdir -p "$FZF_SHELL_DIR"
 curl -fsSL "https://raw.githubusercontent.com/junegunn/fzf/v${FZF_VERSION}/shell/key-bindings.bash" -o "$FZF_SHELL_DIR/key-bindings.bash"
 curl -fsSL "https://raw.githubusercontent.com/junegunn/fzf/v${FZF_VERSION}/shell/completion.bash" -o "$FZF_SHELL_DIR/completion.bash"
 
+# uv (Python package manager)
+echo "Installing uv..."
+UV_UNMANAGED_INSTALL="$LOCAL_BIN" UV_NO_MODIFY_PATH=1 curl -LsSf https://astral.sh/uv/install.sh | sh
+
 echo ""
 echo "Done! Installed:"
 echo "  ghq $($LOCAL_BIN/ghq --version 2>/dev/null || echo "v${GHQ_VERSION}")"
 echo "  fzf $($LOCAL_BIN/fzf --version 2>/dev/null)"
+echo "  uv $($LOCAL_BIN/uv --version 2>/dev/null)"
 echo "  symlinks -> ~/.*"

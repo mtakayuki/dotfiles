@@ -26,11 +26,12 @@ bash install.sh
 
 This will:
 1. Create symlinks from `~/.dotfiles/_*` to `~/.*` (e.g. `_bashrc` -> `~/.bashrc`)
-2. Install [ghq](https://github.com/x-motemen/ghq) and [fzf](https://github.com/junegunn/fzf) to `~/.local/bin/`
+2. Install [ghq](https://github.com/x-motemen/ghq), [fzf](https://github.com/junegunn/fzf), and [uv](https://github.com/astral-sh/uv) to `~/.local/bin/`
 
 ## Key features
 
 - **ghq + fzf**: `gcd` to jump to any repository
 - **fzf**: Ctrl-r for history search, `**<Tab>` for path completion
+- **uv**: Python version and package management
 - **tmux**: vi-mode copy with clipboard support (WSL2: `clip.exe`, macOS: `pbcopy`)
-- **git helpers**: `git-account`, `git-enable-remote-url`, `git-disable-remote-url`
+- **git helpers**: `git-disable-remote-url`, `git-enable-remote-url`
