@@ -15,24 +15,10 @@ shopt -s globstar
 
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-  debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-case "$TERM" in
-  xterm-color|*-256color) color_prompt=yes;;
-esac
-
-# bash completion and git prompt
-has_git_prompt=no
+# bash completion
 if is_mac; then
   if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
-  fi
-  git_prompt=$(brew --prefix)/etc/bash_completion.d/git-prompt.sh
-  if [ -f $git_prompt ]; then
-    . $git_prompt
-    has_git_prompt=yes
   fi
 elif ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -40,35 +26,12 @@ elif ! shopt -oq posix; then
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
   fi
-  bash_completion_dir=/etc/bash_completion.d
-  if [ -f ${bash_completion_dir}/git-prompt ];then
-    . ${bash_completion_dir}/git-prompt
-    has_git_prompt=yes
-  fi
 fi
 
 # prompt
-if [ $has_git_prompt = 'yes' ];then
-  GIT_PS1_SHOWDIRTYSTATE=1
-  GIT_PS1_SHOWUPSTREAM=1
-  GIT_PS1_SHOWUNTRACKEDFILES=
-  GIT_PS1_SHOWSTASHSTATE=1
-
-  if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[00;32m\]\u\[\033[00m\]:\[\033[00;34m\]\W\[\033[01;31m\]$(__git_ps1)\[\033[00m\] \$ '
-  else
-    PS1='${debian_chroot:+($debian_chroot)}\u:\W$(__git_ps1) \$ '
-  fi
-else
-  if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[00;32m\]\u\[\033[00m\]:\[\033[00;34m\]\W\[\033[00m\] \$ '
-  else
-    PS1='${debian_chroot:+($debian_chroot)}\u:\W \$ '
-  fi
-fi
+eval "$(starship init bash)"
 
 eval $(dircolors | sed s/01/00/g)
-unset color_prompt
 
 if [ -f ~/.bash_alias ]; then
   source ~/.bash_alias

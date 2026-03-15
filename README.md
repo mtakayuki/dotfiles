@@ -26,10 +26,11 @@ bash install.sh
 
 This will:
 1. Create symlinks from `~/.dotfiles/_*` to `~/.*` (e.g. `_bashrc` -> `~/.bashrc`)
-2. Install [ghq](https://github.com/x-motemen/ghq), [fzf](https://github.com/junegunn/fzf), and [uv](https://github.com/astral-sh/uv) to `~/.local/bin/`
+2. Install [ghq](https://github.com/x-motemen/ghq), [fzf](https://github.com/junegunn/fzf), [uv](https://github.com/astral-sh/uv), and [starship](https://starship.rs/) to `~/.local/bin/`
 
 ## Key features
 
+- **starship**: modern prompt with git branch, Python venv, and more
 - **ghq + fzf**: `gcd` to jump to any repository
 - **fzf**: Ctrl-r for history search, `**<Tab>` for path completion
 - **uv**: Python version and package management
