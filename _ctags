@@ -1,9 +1,0 @@
---recurse=yes
---exclude=coverage
---exclude=node_modules
---exclude=build
---exclude=dist
-
---langmap=javascript:+.jsx
-
---regex-javascript=/([A-Za-z$][A-Za-z0-9_$()]+)[ \t]*=[ \t]*([Rr]eact.)?createClass[ \t]*\(/\1/c,class/

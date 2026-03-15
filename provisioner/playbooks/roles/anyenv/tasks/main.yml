@@ -1,9 +1,0 @@
----
-- name: "Clone anyenv repository"
-  git:
-    clone: yes
-    dest: "{{ anyenv_dir }}"
-    repo: https://github.com/riywo/anyenv.git
-    update: yes
-
-- include: anyenv.yml

@@ -109,7 +109,7 @@ if [ -f ~/.bash_alias ]; then
   source ~/.bash_alias
 fi
 
-for bashrc in "$HOME/.bashrc_*"; do
+for bashrc in `ls $HOME/.bashrc_*`; do
   if [ -f $bashrc ]; then
     . $bashrc
   fi
@@ -157,20 +157,6 @@ function phistory {
 }
 
 bind -x '"\C-r": phistory'
-
-function kubens() {
-    kns=$(kubectl get namespaces | peco --initial-index=1 --prompt='set kubectl namespace > ' | awk '{print $1}')
-    if [ -n "$kns" ]; then
-      kubectl config set-context $(kubectl config current-context) --namespace=$kns
-    fi
-}
-
-function kubectx() {
-    kcontext=$(kubectl config get-contexts | peco --initial-index=1 --prompt='kubectl config use-context > ' |  sed -e 's/^\*//' | awk '{print $1}')
-    if [ -n "$kcontext" ]; then
-        kubectl config use-context $kcontext
-    fi
-}
 
 # tmux
 if [ -z "$TMUX" -a -z "$SSH_CONECTION" ]; then

@@ -1,2 +1,0 @@
----
-anyenv_dir: "{{ lookup('env', 'HOME') }}/.anyenv"

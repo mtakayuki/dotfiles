@@ -22,39 +22,6 @@ if [ -d "$HOME/.dotfiles/bin" ]; then
   PATH="$HOME/.dotfiles/bin:$PATH"
 fi
 
-if [ -d "/usr/local/miniconda3/bin" ]; then
-  PATH="/usr/local/miniconda3/bin:$PATH"
-fi
-
-# anyenv
-if [ -d "$HOME/.anyenv/bin" ]; then
-  PATH="$HOME/.anyenv/bin:$PATH"
-  eval "$(anyenv init -)"
-fi
-
-# go
-if [ -d "$HOME/go" ]; then
-  export GO111MODULE=on
-  if type goenv > /dev/null && goenv global > /dev/null; then
-    export GOPATH=$HOME/go/$(goenv global)
-  else
-    export GOPATH=$HOME/go
-  fi
-  if [ -d "$GOPATH/bin" ]; then
-    PATH="$GOPATH/bin:$PATH"
-  fi
-fi
-
-# java
-if [ -d "/usr/libexec/java_home" ]; then
-  export JAVA_HOME=`/usr/libexec/java_home`
-fi
-
-# mac
-if is_mac; then
-  export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-fi
-
 for profile in "$HOME/.profile_*"; do
   if [ -f $profile ]; then
     . $profile
