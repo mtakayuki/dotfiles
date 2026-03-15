@@ -1,9 +1,19 @@
 #!/bin/bash
 set -euo pipefail
 
-# Install tools to ~/.local for the current user.
+# Setup dotfiles and install tools for the current user.
 # Usage: bash install.sh
 
+DOTDIR="$HOME/.dotfiles"
+
+# --- Symlinks ---
+echo "Creating symlinks..."
+for file in "$DOTDIR"/_*; do
+  name=$(basename "$file")
+  ln -sfnv "$file" "$HOME/.${name#_}"
+done
+
+# --- Tools ---
 LOCAL_BIN="$HOME/.local/bin"
 LOCAL_SHARE="$HOME/.local/share"
 mkdir -p "$LOCAL_BIN" "$LOCAL_SHARE"
@@ -40,8 +50,7 @@ curl -fsSL "https://raw.githubusercontent.com/junegunn/fzf/v${FZF_VERSION}/shell
 curl -fsSL "https://raw.githubusercontent.com/junegunn/fzf/v${FZF_VERSION}/shell/completion.bash" -o "$FZF_SHELL_DIR/completion.bash"
 
 echo ""
-echo "Installed:"
-echo "  ghq $(ghq --version 2>/dev/null || echo "${GHQ_VERSION}")"
+echo "Done! Installed:"
+echo "  ghq $($LOCAL_BIN/ghq --version 2>/dev/null || echo "v${GHQ_VERSION}")"
 echo "  fzf $($LOCAL_BIN/fzf --version 2>/dev/null)"
-echo ""
-echo "All tools installed to $LOCAL_BIN"
+echo "  symlinks -> ~/.*"

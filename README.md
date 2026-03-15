@@ -13,28 +13,24 @@ _gitignore     # global gitignore
 _tmux.conf     # tmux config (vi keybindings, clipboard)
 bin/           # git helper scripts
 os.sh          # OS detection helpers (is_mac, is_linux)
+install.sh     # setup script (symlinks + tool installation)
 ```
-
-## Key features
-
-- **ghq + peco**: `gcd` to jump to any repository
-- **tmux**: vi-mode copy with clipboard support (WSL2: `clip.exe`, macOS: `pbcopy`)
-- **git helpers**: `git-account`, `git-enable-remote-url`, `git-disable-remote-url`
 
 ## Setup
 
 ```shell
 git clone <this-repo> ~/.dotfiles
 cd ~/.dotfiles
-make
+bash install.sh
 ```
 
-This creates symlinks from `~/.dotfiles/_*` to `~/.*` (e.g. `_bashrc` -> `~/.bashrc`).
+This will:
+1. Create symlinks from `~/.dotfiles/_*` to `~/.*` (e.g. `_bashrc` -> `~/.bashrc`)
+2. Install [ghq](https://github.com/x-motemen/ghq) and [fzf](https://github.com/junegunn/fzf) to `~/.local/bin/`
 
-## Requirements
+## Key features
 
-The following tools should be installed separately:
-
-- [ghq](https://github.com/x-motemen/ghq)
-- [peco](https://github.com/peco/peco)
-- [tmux](https://github.com/tmux/tmux)
+- **ghq + fzf**: `gcd` to jump to any repository
+- **fzf**: Ctrl-r for history search, `**<Tab>` for path completion
+- **tmux**: vi-mode copy with clipboard support (WSL2: `clip.exe`, macOS: `pbcopy`)
+- **git helpers**: `git-account`, `git-enable-remote-url`, `git-disable-remote-url`
