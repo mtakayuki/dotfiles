@@ -1,5 +1,3 @@
-# vim: set filetype=sh:
-
 if is_mac; then
   alias ls='ls -FG'
 elif [ -x /usr/bin/dircolors ]; then
