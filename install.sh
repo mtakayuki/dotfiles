@@ -59,10 +59,30 @@ curl -fsSL https://starship.rs/install.sh -o /tmp/starship-install.sh
 sh /tmp/starship-install.sh --yes --bin-dir "$LOCAL_BIN"
 rm -f /tmp/starship-install.sh
 
+# gh (GitHub CLI)
+GH_VERSION="2.88.1"
+echo "Installing gh ${GH_VERSION}..."
+curl -fsSL "https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_${OS}_${ARCH_GO}.tar.gz" -o /tmp/gh.tar.gz
+tar -xzf /tmp/gh.tar.gz -C /tmp
+install -m 755 "/tmp/gh_${GH_VERSION}_${OS}_${ARCH_GO}/bin/gh" "$LOCAL_BIN/gh"
+rm -rf "/tmp/gh_${GH_VERSION}_${OS}_${ARCH_GO}" /tmp/gh.tar.gz
+
+# glab (GitLab CLI)
+GLAB_VERSION="1.89.0"
+GLAB_OS=$(uname -s | sed 's/Darwin/darwin/;s/Linux/linux/')
+GLAB_ARCH=$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')
+echo "Installing glab ${GLAB_VERSION}..."
+curl -fsSL "https://gitlab.com/gitlab-org/cli/-/releases/v${GLAB_VERSION}/downloads/glab_${GLAB_VERSION}_${GLAB_OS}_${GLAB_ARCH}.tar.gz" -o /tmp/glab.tar.gz
+tar -xzf /tmp/glab.tar.gz -C /tmp
+install -m 755 /tmp/bin/glab "$LOCAL_BIN/glab"
+rm -rf /tmp/bin /tmp/glab.tar.gz
+
 echo ""
 echo "Done! Installed:"
 echo "  ghq $($LOCAL_BIN/ghq --version 2>/dev/null || echo "v${GHQ_VERSION}")"
 echo "  fzf $($LOCAL_BIN/fzf --version 2>/dev/null)"
 echo "  uv $($LOCAL_BIN/uv --version 2>/dev/null)"
 echo "  starship $($LOCAL_BIN/starship --version 2>/dev/null | tail -1)"
+echo "  gh $($LOCAL_BIN/gh --version 2>/dev/null | head -1)"
+echo "  glab $($LOCAL_BIN/glab --version 2>/dev/null)"
 echo "  symlinks -> ~/.*"
