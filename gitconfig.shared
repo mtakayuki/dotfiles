@@ -1,0 +1,11 @@
+[alias]
+    st = status
+    co = checkout
+    sw = switch
+    br = branch
+    ci = commit
+    di = diff
+    lg = log --oneline --graph --decorate
+    aa = add -A
+    cm = commit -m
+    amend = commit --amend --no-edit
