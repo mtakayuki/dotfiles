@@ -34,4 +34,5 @@ This will:
 - **fzf**: Ctrl-r for history search, `**<Tab>` for path completion
 - **uv**: Python version and package management
 - **tmux**: vi-mode copy with clipboard support (WSL2: `clip.exe`, macOS: `pbcopy`)
+- **tmux layouts**: `tl` to launch predefined layouts from `~/.tmux/layouts/*.sh`
 - **git helpers**: `git-disable-remote-url`, `git-enable-remote-url`
