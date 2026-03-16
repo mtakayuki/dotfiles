@@ -31,8 +31,6 @@ fi
 # prompt
 eval "$(starship init bash)"
 
-eval $(dircolors | sed s/01/00/g)
-
 if [ -f ~/.bash_alias ]; then
   source ~/.bash_alias
 fi
