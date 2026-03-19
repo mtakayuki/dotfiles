@@ -61,7 +61,7 @@ install_ghq() {
   log "Installing ghq ${GHQ_VERSION}..."
   local tmp=$(mktemp -d)
   curl -fsSL "https://github.com/x-motemen/ghq/releases/download/v${GHQ_VERSION}/ghq_${OS}_${ARCH_GO}.zip" -o "$tmp/ghq.zip"
-  unzip -o "$tmp/ghq.zip" -d "$tmp"
+  python3 -m zipfile -e "$tmp/ghq.zip" "$tmp"
   install_binary "$tmp/ghq_${OS}_${ARCH_GO}/ghq" ghq
   rm -rf "$tmp"
   log "installed ghq $GHQ_VERSION"
