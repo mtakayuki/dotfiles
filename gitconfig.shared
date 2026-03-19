@@ -1,3 +1,9 @@
+[core]
+    quotePath = false
+[init]
+    defaultBranch = main
+[ghq]
+    root = ~/src
 [alias]
     st = status
     co = checkout
