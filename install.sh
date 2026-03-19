@@ -24,6 +24,7 @@ GHQ_VERSION="1.9.4"
 FZF_VERSION="0.70.0"
 GH_VERSION="2.88.1"
 GLAB_VERSION="1.89.0"
+DELTA_VERSION="0.18.2"
 
 # --- Helpers ---
 
@@ -123,6 +124,21 @@ install_gh() {
   log "installed gh $GH_VERSION"
 }
 
+install_delta() {
+  if version_contains delta "$DELTA_VERSION" --version; then
+    log "delta $DELTA_VERSION already installed"
+    return
+  fi
+  log "Installing delta ${DELTA_VERSION}..."
+  local tmp=$(mktemp -d)
+  local arch_gnu=$(uname -m)
+  curl -fsSL "https://github.com/dandavison/delta/releases/download/${DELTA_VERSION}/delta-${DELTA_VERSION}-${arch_gnu}-unknown-linux-gnu.tar.gz" -o "$tmp/delta.tar.gz"
+  tar -xzf "$tmp/delta.tar.gz" -C "$tmp"
+  install_binary "$tmp/delta-${DELTA_VERSION}-${arch_gnu}-unknown-linux-gnu/delta" delta
+  rm -rf "$tmp"
+  log "installed delta $DELTA_VERSION"
+}
+
 install_glab() {
   if version_contains glab "$GLAB_VERSION" version; then
     log "glab $GLAB_VERSION already installed"
@@ -149,6 +165,7 @@ main() {
   install_fzf
   install_uv
   install_starship
+  install_delta
   install_gh
   install_glab
 
