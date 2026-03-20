@@ -1,5 +1,6 @@
 [core]
     quotePath = false
+    editor = vim
     pager = delta
 [interactive]
     diffFilter = delta --color-only
@@ -7,10 +8,35 @@
     navigate = true
     side-by-side = true
     line-numbers = true
-[merge]
-    conflictStyle = zdiff3
 [init]
     defaultBranch = main
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
+[push]
+    autoSetupRemote = true
+    followTags = true
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
+[branch]
+    sort = -committerdate
+[tag]
+    sort = version:refname
+[rebase]
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
+[rerere]
+    enabled = true
+    autoupdate = true
+[commit]
+    verbose = true
+[help]
+    autocorrect = prompt
 [ghq]
     root = ~/src
 [alias]

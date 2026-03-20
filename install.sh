@@ -155,6 +155,77 @@ install_glab() {
   log "installed glab $GLAB_VERSION"
 }
 
+# --- Git config ---
+
+setup_gitconfig() {
+  log "Configuring git..."
+
+  # include shared config (idempotent)
+  git config --global include.path "~/.dotfiles/gitconfig.shared"
+
+  # merge.conflictstyle: zdiff3 requires git 2.35+
+  local git_version
+  git_version=$(git version | awk '{print $3}')
+  if printf '%s\n' "2.35" "$git_version" | sort -V | head -n1 | grep -qF "2.35"; then
+    git config --global merge.conflictstyle zdiff3
+  else
+    git config --global merge.conflictstyle diff3
+  fi
+
+  # user setup (only when not yet configured)
+  if ! git config --global user.name &>/dev/null; then
+    read -p "Git user name: " git_name
+    git config --global user.name "$git_name"
+  fi
+  if ! git config --global user.email &>/dev/null; then
+    read -p "Git email: " git_email
+    git config --global user.email "$git_email"
+  fi
+
+  # per-host git identity and credential helper (scan ~/src/<host>/)
+  local ghq_root="$HOME/src"
+  if [ -d "$ghq_root" ]; then
+    # github.com: always use gh credential helper
+    git config --global "credential.https://github.com.helper" \
+      "!${LOCAL_BIN}/gh auth git-credential"
+
+    for hostdir in "$ghq_root"/*/; do
+      [ -d "$hostdir" ] || continue
+      local host
+      host=$(basename "$hostdir")
+      local include_key="includeIf.gitdir:~/src/${host}/.path"
+      # skip if already configured
+      git config --global --get "$include_key" &>/dev/null && continue
+      local host_config="$HOME/.gitconfig-${host}"
+
+      # email
+      read -p "Different email for ~/src/${host}/? (blank = use default): " host_email
+      if [ -n "$host_email" ]; then
+        git config -f "$host_config" user.email "$host_email"
+      fi
+
+      # credential helper (github.com is handled above)
+      if [ "$host" != "github.com" ] && \
+         ! git config --global "credential.https://${host}.helper" &>/dev/null; then
+        read -p "Credential helper for ${host}? [gh/glab/none] (default: none): " cred_helper
+        case "$cred_helper" in
+          gh)   git config --global "credential.https://${host}.helper" \
+                  "!${LOCAL_BIN}/gh auth git-credential" ;;
+          glab) git config --global "credential.https://${host}.helper" \
+                  "!${LOCAL_BIN}/glab auth git-credential" ;;
+        esac
+      fi
+
+      # ensure file exists and register includeIf
+      [ -f "$host_config" ] || touch "$host_config"
+      git config --global "$include_key" "$host_config"
+      log "configured $host"
+    done
+  fi
+
+  log "git configured (user: $(git config --global user.name))"
+}
+
 # --- Main ---
 
 main() {
@@ -168,6 +239,8 @@ main() {
   install_delta
   install_gh
   install_glab
+
+  setup_gitconfig
 
   echo ""
   log "Done!"
