@@ -8,7 +8,9 @@ set -euo pipefail
 DOTDIR="$HOME/.dotfiles"
 LOCAL_BIN="$HOME/.local/bin"
 LOCAL_SHARE="$HOME/.local/share"
-mkdir -p "$LOCAL_BIN" "$LOCAL_SHARE"
+LOCAL_BASHRC_D="$HOME/.bashrc.d"
+mkdir -p "$LOCAL_BIN" "$LOCAL_SHARE" "$LOCAL_BASHRC_D"
+chmod 700 "$LOCAL_BASHRC_D"
 
 ARCH=$(uname -m)
 case "$ARCH" in

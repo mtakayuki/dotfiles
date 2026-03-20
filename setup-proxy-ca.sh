@@ -64,7 +64,6 @@ sudo update-ca-certificates
 # Set NODE_EXTRA_CA_CERTS for tools like Claude Code
 LOCAL_BASHRC_D="$HOME/.bashrc.d"
 CA_BUNDLE="/etc/ssl/certs/ca-certificates.crt"
-mkdir -p "$LOCAL_BASHRC_D"
 cat > "$LOCAL_BASHRC_D/proxy-ca.sh" <<EOF
 export NODE_EXTRA_CA_CERTS="$CA_BUNDLE"
 EOF
