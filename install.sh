@@ -52,6 +52,7 @@ FD_VERSION="10.3.0"
 BAT_VERSION="0.26.1"
 ZOXIDE_VERSION="0.9.9"
 DIRENV_VERSION="2.37.1"
+NVIM_VERSION="0.11.1"
 
 # --- Helpers ---
 
@@ -249,6 +250,23 @@ install_direnv() {
   log "installed direnv $DIRENV_VERSION"
 }
 
+install_nvim() {
+  if version_contains nvim "$NVIM_VERSION" --version; then
+    log "nvim $NVIM_VERSION already installed"
+    return
+  fi
+  log "Installing neovim ${NVIM_VERSION}..."
+  local tmp=$(mktemp -d)
+  local nvim_dir="$LOCAL_SHARE/nvim-install"
+  curl -fsSL "https://github.com/neovim/neovim/releases/download/v${NVIM_VERSION}/nvim-linux-${ARCH}.tar.gz" -o "$tmp/nvim.tar.gz"
+  rm -rf "$nvim_dir"
+  mkdir -p "$nvim_dir"
+  tar -xzf "$tmp/nvim.tar.gz" -C "$nvim_dir" --strip-components=1
+  ln -sfn "$nvim_dir/bin/nvim" "$LOCAL_BIN/nvim"
+  rm -rf "$tmp"
+  log "installed nvim $NVIM_VERSION"
+}
+
 # --- Git config ---
 
 setup_gitconfig() {
@@ -338,6 +356,7 @@ main() {
   install_bat
   install_zoxide
   install_direnv
+  install_nvim
 
   setup_gitconfig
 
