@@ -281,6 +281,26 @@ install_nvim() {
   log "installed nvim $NVIM_VERSION"
 }
 
+install_claude() {
+  if command -v claude &>/dev/null; then
+    log "claude already installed"
+  else
+    log "Installing Claude Code..."
+    curl -fsSL https://claude.ai/install.sh | bash
+    log "installed Claude Code"
+  fi
+
+  # Copy settings template if no settings.json exists yet
+  local claude_settings="$HOME/.claude/settings.json"
+  if [ ! -f "$claude_settings" ]; then
+    mkdir -p "$HOME/.claude"
+    cp "$DOTDIR/claude-settings.template.json" "$claude_settings"
+    log "created $claude_settings from template"
+  else
+    log "claude settings.json already exists (not overwriting)"
+  fi
+}
+
 # --- Git config ---
 
 setup_gitconfig() {
@@ -371,6 +391,7 @@ main() {
   install_zoxide
   install_direnv
   install_nvim
+  install_claude
 
   setup_gitconfig
 
