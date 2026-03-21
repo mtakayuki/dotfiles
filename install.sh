@@ -5,7 +5,27 @@ set -euo pipefail
 # Usage: bash install.sh
 # Re-running is safe — tools already at the pinned version are skipped.
 
-DOTDIR="$HOME/.dotfiles"
+# Resolve the actual directory where this script lives (follows symlinks).
+DOTDIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
+DOTLINK="$HOME/.dotfiles"
+
+# Create ~/.dotfiles symlink if the repo lives elsewhere (e.g. under ghq root).
+if [ "$DOTDIR" != "$DOTLINK" ]; then
+  if [ -L "$DOTLINK" ]; then
+    current_target="$(readlink -f "$DOTLINK")"
+    if [ "$current_target" != "$DOTDIR" ]; then
+      ln -sfnv "$DOTDIR" "$DOTLINK"
+    fi
+  elif [ -d "$DOTLINK" ]; then
+    echo "ERROR: $DOTLINK is a real directory, not a symlink."
+    echo "To migrate, move it to ghq root and re-run:"
+    echo "  mv $DOTLINK $DOTDIR"
+    echo "  bash $DOTDIR/install.sh"
+    exit 1
+  else
+    ln -sfnv "$DOTDIR" "$DOTLINK"
+  fi
+fi
 LOCAL_BIN="$HOME/.local/bin"
 LOCAL_SHARE="$HOME/.local/share"
 LOCAL_BASHRC_D="$HOME/.bashrc.d"

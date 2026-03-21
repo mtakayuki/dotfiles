@@ -19,14 +19,16 @@ install.sh     # setup script (symlinks + tool installation)
 ## Setup
 
 ```shell
-git clone <this-repo> ~/.dotfiles
-cd ~/.dotfiles
-bash install.sh
+# First time (ghq is not yet installed)
+mkdir -p ~/src/github.com/mtakayuki
+git clone https://github.com/mtakayuki/dotfiles.git ~/src/github.com/mtakayuki/dotfiles
+bash ~/src/github.com/mtakayuki/dotfiles/install.sh
 ```
 
 This will:
-1. Create symlinks from `~/.dotfiles/_*` to `~/.*` (e.g. `_bashrc` -> `~/.bashrc`)
-2. Install [ghq](https://github.com/x-motemen/ghq), [fzf](https://github.com/junegunn/fzf), [uv](https://github.com/astral-sh/uv), and [starship](https://starship.rs/) to `~/.local/bin/`
+1. Create `~/.dotfiles` symlink pointing to the repo
+2. Create symlinks from `~/.dotfiles/_*` to `~/.*` (e.g. `_bashrc` -> `~/.bashrc`)
+3. Install CLI tools (ghq, fzf, uv, starship, delta, rg, fd, bat, etc.) to `~/.local/bin/`
 
 ## Key features
 
