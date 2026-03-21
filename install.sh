@@ -27,6 +27,11 @@ FZF_VERSION="0.70.0"
 GH_VERSION="2.88.1"
 GLAB_VERSION="1.89.0"
 DELTA_VERSION="0.18.2"
+RG_VERSION="15.1.0"
+FD_VERSION="10.3.0"
+BAT_VERSION="0.26.1"
+ZOXIDE_VERSION="0.9.9"
+DIRENV_VERSION="2.37.1"
 
 # --- Helpers ---
 
@@ -157,6 +162,73 @@ install_glab() {
   log "installed glab $GLAB_VERSION"
 }
 
+install_rg() {
+  if version_contains rg "$RG_VERSION" --version; then
+    log "rg $RG_VERSION already installed"
+    return
+  fi
+  log "Installing ripgrep ${RG_VERSION}..."
+  local tmp=$(mktemp -d)
+  curl -fsSL "https://github.com/BurntSushi/ripgrep/releases/download/${RG_VERSION}/ripgrep-${RG_VERSION}-${ARCH}-unknown-linux-musl.tar.gz" -o "$tmp/rg.tar.gz"
+  tar -xzf "$tmp/rg.tar.gz" -C "$tmp"
+  install_binary "$tmp/ripgrep-${RG_VERSION}-${ARCH}-unknown-linux-musl/rg" rg
+  rm -rf "$tmp"
+  log "installed rg $RG_VERSION"
+}
+
+install_fd() {
+  if version_contains fd "$FD_VERSION" --version; then
+    log "fd $FD_VERSION already installed"
+    return
+  fi
+  log "Installing fd ${FD_VERSION}..."
+  local tmp=$(mktemp -d)
+  curl -fsSL "https://github.com/sharkdp/fd/releases/download/v${FD_VERSION}/fd-v${FD_VERSION}-${ARCH}-unknown-linux-gnu.tar.gz" -o "$tmp/fd.tar.gz"
+  tar -xzf "$tmp/fd.tar.gz" -C "$tmp"
+  install_binary "$tmp/fd-v${FD_VERSION}-${ARCH}-unknown-linux-gnu/fd" fd
+  rm -rf "$tmp"
+  log "installed fd $FD_VERSION"
+}
+
+install_bat() {
+  if version_contains bat "$BAT_VERSION" --version; then
+    log "bat $BAT_VERSION already installed"
+    return
+  fi
+  log "Installing bat ${BAT_VERSION}..."
+  local tmp=$(mktemp -d)
+  curl -fsSL "https://github.com/sharkdp/bat/releases/download/v${BAT_VERSION}/bat-v${BAT_VERSION}-${ARCH}-unknown-linux-gnu.tar.gz" -o "$tmp/bat.tar.gz"
+  tar -xzf "$tmp/bat.tar.gz" -C "$tmp"
+  install_binary "$tmp/bat-v${BAT_VERSION}-${ARCH}-unknown-linux-gnu/bat" bat
+  rm -rf "$tmp"
+  log "installed bat $BAT_VERSION"
+}
+
+install_zoxide() {
+  if version_contains zoxide "$ZOXIDE_VERSION" --version; then
+    log "zoxide $ZOXIDE_VERSION already installed"
+    return
+  fi
+  log "Installing zoxide ${ZOXIDE_VERSION}..."
+  local tmp=$(mktemp -d)
+  curl -fsSL "https://github.com/ajeetdsouza/zoxide/releases/download/v${ZOXIDE_VERSION}/zoxide-${ZOXIDE_VERSION}-${ARCH}-unknown-linux-musl.tar.gz" -o "$tmp/zoxide.tar.gz"
+  tar -xzf "$tmp/zoxide.tar.gz" -C "$tmp"
+  install_binary "$tmp/zoxide" zoxide
+  rm -rf "$tmp"
+  log "installed zoxide $ZOXIDE_VERSION"
+}
+
+install_direnv() {
+  if version_contains direnv "$DIRENV_VERSION" version; then
+    log "direnv $DIRENV_VERSION already installed"
+    return
+  fi
+  log "Installing direnv ${DIRENV_VERSION}..."
+  curl -fsSL "https://github.com/direnv/direnv/releases/download/v${DIRENV_VERSION}/direnv.linux-${ARCH_GO}" -o "$LOCAL_BIN/direnv"
+  chmod +x "$LOCAL_BIN/direnv"
+  log "installed direnv $DIRENV_VERSION"
+}
+
 # --- Git config ---
 
 setup_gitconfig() {
@@ -241,6 +313,11 @@ main() {
   install_delta
   install_gh
   install_glab
+  install_rg
+  install_fd
+  install_bat
+  install_zoxide
+  install_direnv
 
   setup_gitconfig
 
