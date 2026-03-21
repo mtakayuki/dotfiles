@@ -12,7 +12,7 @@ DOTLINK="$HOME/.dotfiles"
 # Create ~/.dotfiles symlink if the repo lives elsewhere (e.g. under ghq root).
 if [ "$DOTDIR" != "$DOTLINK" ]; then
   if [ -L "$DOTLINK" ]; then
-    current_target="$(readlink -f "$DOTLINK")"
+    current_target="$(readlink -f "$DOTLINK" 2>/dev/null || true)"
     if [ "$current_target" != "$DOTDIR" ]; then
       ln -sfnv "$DOTDIR" "$DOTLINK"
     fi
@@ -30,6 +30,7 @@ LOCAL_BIN="$HOME/.local/bin"
 LOCAL_SHARE="$HOME/.local/share"
 LOCAL_BASHRC_D="$HOME/.bashrc.d"
 mkdir -p "$LOCAL_BIN" "$LOCAL_SHARE" "$LOCAL_BASHRC_D"
+export PATH="$LOCAL_BIN:$PATH"
 chmod 700 "$LOCAL_BASHRC_D"
 
 ARCH=$(uname -m)
