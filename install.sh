@@ -75,7 +75,20 @@ install_symlinks() {
   log "Creating symlinks..."
   for file in "$DOTDIR"/_*; do
     name=$(basename "$file")
-    ln -sfnv "$file" "$HOME/.${name#_}"
+    target="$HOME/.${name#_}"
+
+    # _config/ is special: link its children individually into ~/.config/
+    # to avoid overwriting the entire ~/.config directory.
+    if [ "$name" = "_config" ] && [ -d "$file" ]; then
+      mkdir -p "$HOME/.config"
+      for child in "$file"/*/; do
+        [ -d "$child" ] || continue
+        ln -sfnv "$child" "$HOME/.config/$(basename "$child")"
+      done
+      continue
+    fi
+
+    ln -sfnv "$file" "$target"
   done
 }
 
