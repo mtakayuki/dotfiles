@@ -1,34 +1,50 @@
 # dotfiles
 
-Bash/tmux/git settings for Linux (WSL2, VM) and macOS.
+Bash/tmux/git settings for Linux (WSL2, VM), managed with Nix Home Manager.
 
 ## Structure
 
 ```
-_bash_alias    # shell aliases
-_bash_profile  # loads .profile
-_bashrc        # bash config (prompt, functions, tmux auto-start)
-_profile       # PATH settings, sources os.sh
-_gitignore     # global gitignore
-_tmux.conf     # tmux config (vi keybindings, clipboard)
-bin/           # git helper scripts
-os.sh          # OS detection helpers (is_mac, is_linux)
-install.sh     # setup script (symlinks + tool installation)
+flake.nix          # Nix flake definition (inputs: nixpkgs, home-manager)
+home.nix           # Home Manager config (packages, dotfile symlinks, git)
+bootstrap.sh       # Initial setup: install Nix + apply home-manager
+config/
+  bash/            # bashrc, profile, bash_alias, bash_profile
+    bashrc.d/      # drop-in scripts (10-fzf, 20-direnv, ..., 90-zoxide)
+  nvim/            # neovim config (lazy.nvim)
+  tmux.conf        # tmux config (vi keybindings, clipboard)
+  claude/          # Claude Code settings template
+bin/               # helper scripts (git-setup-user, setup-proxy-ca, etc.)
 ```
 
 ## Setup
 
 ```shell
-# First time (ghq is not yet installed)
+# Clone
 mkdir -p ~/src/github.com/mtakayuki
 git clone https://github.com/mtakayuki/dotfiles.git ~/src/github.com/mtakayuki/dotfiles
-bash ~/src/github.com/mtakayuki/dotfiles/install.sh
+
+# Bootstrap (installs Nix, enables flakes, runs home-manager switch)
+bash ~/src/github.com/mtakayuki/dotfiles/bootstrap.sh
 ```
 
 This will:
-1. Create `~/.dotfiles` symlink pointing to the repo
-2. Create symlinks from `~/.dotfiles/_*` to `~/.*` (e.g. `_bashrc` -> `~/.bashrc`)
-3. Install CLI tools (ghq, fzf, uv, starship, delta, rg, fd, bat, etc.) to `~/.local/bin/`
+1. Install Nix (single-user, `--no-daemon`)
+2. Apply Home Manager config: install packages and create dotfile symlinks
+3. Set up git user/credentials interactively
+4. Copy Claude Code settings template (if not present)
+
+## Updating
+
+After editing config files:
+
+```shell
+home-manager switch --flake .#default --impure
+```
+
+## Packages managed by Home Manager
+
+ghq, fzf, gh, glab, delta, ripgrep, fd, bat, zoxide, direnv, neovim, starship, uv
 
 ## Key features
 
@@ -36,6 +52,6 @@ This will:
 - **ghq + fzf**: `gcd` to jump to any repository
 - **fzf**: Ctrl-r for history search, `**<Tab>` for path completion
 - **uv**: Python version and package management
-- **tmux**: vi-mode copy with clipboard support (WSL2: `clip.exe`, macOS: `pbcopy`)
+- **tmux**: vi-mode copy with clipboard support (WSL2: `clip.exe`)
 - **tmux layouts**: `tl` to launch predefined layouts from `~/.tmux/layouts/*.sh`
-- **git helpers**: `git-disable-remote-url`, `git-enable-remote-url`
+- **git helpers**: `git-setup-user`, `git-disable-remote-url`, `git-enable-remote-url`

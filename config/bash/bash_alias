@@ -1,6 +1,4 @@
-if is_mac; then
-  alias ls='ls -FG'
-elif [ -x /usr/bin/dircolors ]; then
+if [ -x /usr/bin/dircolors ]; then
   alias ls='ls -F --color=auto'
   alias grep='grep --color=auto'
   alias fgrep='fgrep --color=auto'
@@ -17,7 +15,3 @@ alias mv='mv -i'
 # Default to human readable figures
 alias df='df -h'
 alias du='du -h'
-
-if is_mac; then
-  alias tac="tail -r"
-fi

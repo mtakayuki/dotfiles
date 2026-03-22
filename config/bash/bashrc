@@ -1,5 +1,3 @@
-. $HOME/.dotfiles/os.sh
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -16,11 +14,7 @@ shopt -s globstar
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # bash completion
-if is_mac; then
-  if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
-  fi
-elif ! shopt -oq posix; then
+if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
   elif [ -f /etc/bash_completion ]; then
@@ -33,7 +27,7 @@ if [ -f ~/.bash_alias ]; then
 fi
 
 # Source drop-in configs (shared, then machine-local)
-for f in "$HOME/.dotfiles/bashrc.d"/*.sh "$HOME/.bashrc.d"/*.sh; do
+for f in "$HOME/.config/bash/bashrc.d"/*.sh "$HOME/.bashrc.d"/*.sh; do
   [ -r "$f" ] && . "$f"
 done
 unset f

@@ -1,0 +1,65 @@
+#!/bin/bash
+set -euo pipefail
+
+# Set up machine-specific git user and credential helpers.
+# Usage: git-setup-user
+# Re-running is safe — already configured values are skipped.
+
+GH_BIN="$(command -v gh)"
+GLAB_BIN="$(command -v glab)"
+
+log() { echo "[git-setup-user] $*"; }
+
+# user setup (only when not yet configured)
+if ! git config --global user.name &>/dev/null; then
+  read -p "Git user name: " git_name
+  git config --global user.name "$git_name"
+fi
+if ! git config --global user.email &>/dev/null; then
+  read -p "Git email: " git_email
+  git config --global user.email "$git_email"
+fi
+
+# per-host git identity and credential helper (scan ~/src/<host>/)
+ghq_root="$HOME/src"
+if [ -d "$ghq_root" ]; then
+  # github.com: always use gh credential helper
+  git config --global "credential.https://github.com.helper" \
+    "!${GH_BIN} auth git-credential"
+
+  for hostdir in "$ghq_root"/*/; do
+    [ -d "$hostdir" ] || continue
+    host=$(basename "$hostdir")
+    include_key="includeIf.gitdir:~/src/${host}/.path"
+
+    # skip if already configured
+    git config --global --get "$include_key" &>/dev/null && continue
+
+    host_config="$HOME/.gitconfig-${host}"
+
+    # email
+    read -p "Different email for ~/src/${host}/? (blank = use default): " host_email
+    if [ -n "$host_email" ]; then
+      git config -f "$host_config" user.email "$host_email"
+    fi
+
+    # credential helper (github.com is handled above)
+    if [ "$host" != "github.com" ] && \
+       ! git config --global "credential.https://${host}.helper" &>/dev/null; then
+      read -p "Credential helper for ${host}? [gh/glab/none] (default: none): " cred_helper
+      case "$cred_helper" in
+        gh)   git config --global "credential.https://${host}.helper" \
+                "!${GH_BIN} auth git-credential" ;;
+        glab) git config --global "credential.https://${host}.helper" \
+                "!${GLAB_BIN} auth git-credential" ;;
+      esac
+    fi
+
+    # ensure file exists and register includeIf
+    [ -f "$host_config" ] || touch "$host_config"
+    git config --global "$include_key" "$host_config"
+    log "configured $host"
+  done
+fi
+
+log "done (user: $(git config --global user.name))"

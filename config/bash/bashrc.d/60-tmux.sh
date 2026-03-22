@@ -23,11 +23,11 @@ function tl {
   fi
 }
 
-# tmux auto-attach
-if [ -z "$TMUX" ]; then
-  if tmux has-session > /dev/null 2>&1 && tmux list-sessions | grep -qE '.*]$'; then
-    tmux attach
+# tmux auto-attach (only in interactive terminal)
+if [ -z "$TMUX" ] && [ -t 0 ]; then
+  if tmux has-session -t main 2>/dev/null; then
+    tmux attach -t main
   else
-    tmux new-session
+    tmux new-session -s main
   fi
 fi
