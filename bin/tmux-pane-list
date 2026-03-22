@@ -1,0 +1,9 @@
+#!/bin/bash
+# Show pane list for tmux status bar with active pane highlighted (Solarized Dark)
+tmux list-panes -F '#{pane_active} #{pane_index} #{pane_current_command}' 2>/dev/null | while read -r active idx cmd; do
+  if [ "$active" = "1" ]; then
+    printf '#[bold,fg=#93a1a1] %s %s #[default]' "$idx" "$cmd"
+  else
+    printf '#[fg=#586e75] %s %s ' "$idx" "$cmd"
+  fi
+done
