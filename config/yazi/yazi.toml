@@ -1,0 +1,5 @@
+[mgr]
+ratio = [0, 1, 0]
+sort_by = "natural"
+sort_dir_first = true
+show_hidden = true

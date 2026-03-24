@@ -1,11 +1,17 @@
 # dev: start a Claude Code development session in the current repository
 #
-# Creates (or switches to) a tmux session with a 3-pane layout:
-#   +----------+----------+
-#   |          |  claude   |
-#   |  nvim    +----------+
-#   |          | terminal  |
-#   +----------+----------+
+# Creates (or switches to) a tmux session with an IDE-like 4-pane layout:
+#   +----+------------------------+--------------+
+#   |    |                        |              |
+#   |yazi|  nvim --listen         |  Claude      |
+#   | 5% |  60%                   |  35%         |
+#   |    |                        |              |
+#   |    +------------------------+              |
+#   |    |  terminal (25%)        |              |
+#   |    |                        |              |
+#   +----+------------------------+--------------+
+#
+# Files selected in yazi (Enter key) open in the nvim pane.
 #
 # Usage:
 #   dev [directory]   start in the given (or current) directory
@@ -48,23 +54,38 @@ function devi {
 function _dev_create_session {
   local session_name="$1"
   local dir="$2"
+  local sock="/tmp/nvim-${session_name}.sock"
 
-  # Create session with first pane (will become nvim on the left)
-  tmux new-session -d -s "$session_name" -c "$dir"
+  # Create session with current terminal size so percentage splits work correctly
+  tmux new-session -d -s "$session_name" -c "$dir" -x "$(tput cols)" -y "$(tput lines)"
 
-  # Split right: Claude Code (top-right)
-  tmux split-window -h -t "=$session_name:1.1" -c "$dir"
+  # Split right for nvim+terminal+claude area (95% of width)
+  tmux split-window -h -l 95% -t "=$session_name:1.1" -c "$dir"
 
-  # Split below the right pane: terminal (bottom-right)
-  tmux split-window -v -t "=$session_name:1.2" -c "$dir"
+  # Split right again for Claude (35% of remaining ≈ 35% total)
+  tmux split-window -h -l 37% -t "=$session_name:1.2" -c "$dir"
 
-  # Set layout: left pane ~50%, right pane split vertically
-  # Select the left pane (nvim) and start nvim
-  tmux send-keys -t "=$session_name:1.1" 'nvim' C-m
+  # Split nvim pane vertically for terminal (bottom 25%)
+  tmux split-window -v -l 25% -t "=$session_name:1.2" -c "$dir"
 
-  # Start claude in the top-right pane
-  tmux send-keys -t "=$session_name:1.2" 'claude' C-m
+  # Pane layout:
+  #   1.1 = yazi (left)
+  #   1.2 = nvim (center-top)
+  #   1.3 = terminal (center-bottom)
+  #   1.4 = claude (right)
 
-  # Focus on the Claude Code pane (top-right)
-  tmux select-pane -t "=$session_name:1.2"
+  # Clean up stale socket from previous session
+  rm -f "$sock"
+
+  # Start nvim with --listen for remote file opening
+  tmux send-keys -t "=$session_name:1.2" "nvim --listen ${sock}" C-m
+
+  # Start yazi with EDITOR set to open files in the nvim server pane
+  tmux send-keys -t "=$session_name:1.1" "EDITOR=nvim-remote NVIM_SOCK=${sock} yazi" C-m
+
+  # Start claude in the right pane
+  tmux send-keys -t "=$session_name:1.4" 'claude' C-m
+
+  # Focus on the Claude Code pane
+  tmux select-pane -t "=$session_name:1.4"
 }

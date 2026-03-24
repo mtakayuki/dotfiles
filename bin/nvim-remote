@@ -1,0 +1,8 @@
+#!/bin/bash
+# Open files in a running nvim instance via --server.
+# Falls back to normal nvim if NVIM_SOCK is not set or socket is missing.
+if [ -n "$NVIM_SOCK" ] && [ -S "$NVIM_SOCK" ]; then
+  nvim --server "$NVIM_SOCK" --remote "$@"
+else
+  nvim "$@"
+fi

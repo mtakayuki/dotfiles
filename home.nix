@@ -22,6 +22,7 @@
     neovim
     starship
     uv
+    yazi
   ];
 
   # --- Dotfile symlinks ---
@@ -40,6 +41,7 @@
     source = ./config/bash/bashrc.d;
     recursive = true;
   };
+  home.file.".config/yazi".source = ./config/yazi;
   home.file.".ssh/config" = {
     text = "Include ~/.ssh/conf.d/*.conf\n";
   };
