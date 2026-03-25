@@ -24,6 +24,7 @@
     uv
     yazi
     jq
+    bash-completion
   ];
 
   # --- Dotfile symlinks ---
