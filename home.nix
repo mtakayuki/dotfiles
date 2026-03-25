@@ -23,6 +23,7 @@
     starship
     uv
     yazi
+    jq
   ];
 
   # --- Dotfile symlinks ---
